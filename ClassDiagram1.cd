@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Karesz.Form1">
+    <Position X="2.75" Y="1" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Karesz.Form1.MonitorPanel" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Karesz.Form1.Pálya" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Karesz.Form1.Óra" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Karesz.Form1.Vektor" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Karesz.Form1.Matek" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Karesz.Form1.Robot">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAiSAAACACAMQAAAQECIAAQAAAAAAHAAEAQAKAIASCg=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

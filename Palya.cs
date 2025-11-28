@@ -228,7 +228,7 @@ namespace Karesz
 				if (fájlnév == "") { Betölt(); return; }
 				try
 				{
-					StreamReader f = new StreamReader(fájlnév);
+					StreamReader f = new StreamReader("../../Palyak/"+fájlnév);
 					for (int y = 0; y < Y; ++y)
 					{
 						string[] sor = f.ReadLine().Split('\t');

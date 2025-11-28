@@ -15,7 +15,7 @@ namespace Karesz
     {
 
 		static Random r = new Random();
-		string betöltendő_pálya = "../../Palyak/Palya01.txt";
+		string betöltendő_pálya = "Palya01.txt";
 
 		void TANÁR_ROBOTJAI()
 		{
@@ -36,25 +36,18 @@ namespace Karesz
                 gonesz.Lőjj();
                 if (irány)//balra KARESZ szempontjából
                 {
-                    if (gonesz.SzélesUltrahangSzenzor().Item3 > 0)
-                    {
-                        gonesz.Fordulj(jobbra);
-                        gonesz.Lépj();
-                        gonesz.Fordulj(balra);
-                    }
-                    else
-                        irány = !irány;
+                    gonesz.Fordulj(jobbra);
+                    
+                    gonesz.Fordulj(balra);
                 }
                 else
                 {
-                    if (gonesz.SzélesUltrahangSzenzor().Item1 > 0)
-                    {
-                        gonesz.Fordulj(balra);
+                    gonesz.Fordulj(balra);
+                    if (!Van_e_előttem_fal())
                         gonesz.Lépj();
-                        gonesz.Fordulj(jobbra);
-                    }
                     else
                         irány = !irány;
+                    gonesz.Fordulj(jobbra);
                 }
             }
 		}

@@ -66,7 +66,7 @@ namespace Karesz
 				this(X, Y, new Vektor(lxy, lxy), Új_tollkészlet(), Új_vonalzósceruza(), new int[X, Y], new int[X, Y], szülőform)
 			{ }
 			public Pálya(Form1 szülőform) :
-				this(30, 18, 24, szülőform)
+				this(41, 31, 24, szülőform)
 			{ }
 
 			#endregion

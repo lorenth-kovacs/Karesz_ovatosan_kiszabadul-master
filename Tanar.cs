@@ -19,56 +19,50 @@ namespace Karesz
 
 		void TANÁR_ROBOTJAI()
 		{
-			new Robot("Karesz", 0, 0, 0, 0, 100, 16, 16, 2);//100 hógolyóval indít
-			Robot m = new Robot("Golyesz", Robot.képkészlet_lilesz, 0, 0, 0, 0, 1000, 1, 1, 1);//1000hógolyóval indít
+			new Robot("Karesz", 0, 0, 0, 0, 100, r.Next(14) + 11, 16 , 0);//100 hógolyóval indít
+			Robot gonesz = new Robot("Golyesz", Robot.képkészlet_lilesz, 0, 0, 0, 0, 1000, r.Next(14), 1 , 2);//1000hógolyóval indít
 
-			m.Feladat = delegate
+			gonesz.Feladat = delegate
 			{
-				while (true)
-					Körjárat(m);
+				Gonesz_lép(gonesz);
 			};
 		}
 
-		void Bénázik_ennyit(Robot m, int n)
+		void Gonesz_lép(Robot gonesz)
+		{
+            bool irány = (r.Next(1) == 0) ? true : false;
+            while (true)
+            {
+                gonesz.Lőjj();
+                if (irány)//balra KARESZ szempontjából
+                {
+                    if (gonesz.SzélesUltrahangSzenzor().Item3 > 0)
+                    {
+                        gonesz.Fordulj(jobbra);
+                        gonesz.Lépj();
+                        gonesz.Fordulj(balra);
+                    }
+                    else
+                        irány = !irány;
+                }
+                else
+                {
+                    if (gonesz.SzélesUltrahangSzenzor().Item1 > 0)
+                    {
+                        gonesz.Fordulj(balra);
+                        gonesz.Lépj();
+                        gonesz.Fordulj(jobbra);
+                    }
+                    else
+                        irány = !irány;
+                }
+            }
+		}
+
+		void Vár(Robot gonesz, int n)
 		{
 			for (int i = 0; i < n; i++)
-			{
-				Vár(m, r.Next(2));
-				m.Lépj();
-			}
-		}
-
-		void Bénázik_a_falig(Robot m)
-		{
-			while (!m.Előtt_fal_van())
-			{
-				Vár(m, r.Next(4));
-				m.Lépj();
-			}
-		}
-
-
-		void Vár(Robot m, int n)
-		{
-			for (int i = 0; i < n; i++)
-				m.Várj();
-		}
-
-		void Körjárat(Robot m)
-		{
-			Bénázik_a_falig(m);
-			m.Fordulj(jobbra);
-			int ennyit_megy_be= r.Next(3);
-			Bénázik_ennyit(m, ennyit_megy_be);
-
-			m.Fordulj(jobbra);
-			m.Fordulj(jobbra);
-			Bénázik_ennyit(m, ennyit_megy_be);
-			m.Fordulj(balra);
-			Bénázik_ennyit(m, 17);
-			m.Fordulj(jobbra);
-			m.Fordulj(jobbra);
-
+                gonesz.Várj();
 		}
 
 	}

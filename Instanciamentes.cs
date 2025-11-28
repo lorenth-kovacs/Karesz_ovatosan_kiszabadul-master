@@ -11,6 +11,10 @@ namespace Karesz
 
 		void Lépj() =>
 			Robot.akit_kiválasztottak.Lépj();
+
+		void Lőjj() =>
+			Robot.akit_kiválasztottak.Lőjj();
+
 		void Várj() =>
 			Robot.akit_kiválasztottak.Várj();
 		/*

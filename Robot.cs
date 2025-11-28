@@ -147,6 +147,7 @@ namespace Karesz
 				{
 					if (Robot.lista.TrueForAll(r => r.Kész || r.Vár))
 					{
+						Hógolyó.k_léptetése();
 						Robot.ok_léptetése();
 						Robot.form.Frissít();
 						Robot.ok_elindítása();
@@ -170,12 +171,15 @@ namespace Karesz
                 foreach ((Vektor, Vektor) p in Robot.Ellövendő_lövedékek)
                 {
 					(Vektor h, Vektor v) = p;
+					new Hógolyó(h, v);
+					/*
 					Robot golyesz = new Robot("Golyesz", képkészlet_golyesz, new int[] { 0, 0, 0, 0, 0 }, h, v);
 					golyesz.Feladat = delegate ()
 					{
                         while (true)
 							golyesz.Lépj();
 					};
+					*/
                 }
 				Robot.Ellövendő_lövedékek.Clear();
             }

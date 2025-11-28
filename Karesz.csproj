@@ -53,6 +53,7 @@
     <Compile Include="Ablak.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Hógolyó.cs" />
     <Compile Include="Instanciamentes.cs">
       <SubType>Form</SubType>
     </Compile>

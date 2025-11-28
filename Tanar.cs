@@ -15,11 +15,11 @@ namespace Karesz
     {
 
 		static Random r = new Random();
-		string betöltendő_pálya = "../../Palyak/Palya01.txt";
+		string betöltendő_pálya = "../../Palyak/Palya02.txt";
 
 		void TANÁR_ROBOTJAI()
 		{
-			new Robot("Karesz", 0, 0, 0, 0, 100, 16, 16, 2);//100 hógolyóval indít
+			new Robot("Karesz", 0, 0, 0, 0, 100, 16, 16, 0);//100 hógolyóval indít
 			Robot m = new Robot("Golyesz", Robot.képkészlet_lilesz, 0, 0, 0, 0, 1000, 1, 1, 1);//1000hógolyóval indít
 
 			m.Feladat = delegate

@@ -177,7 +177,9 @@ namespace Karesz
 					e.Graphics.DrawImageUnscaledAndClipped(robot.Iránykép(), new Rectangle(robot.H.X * l.X, robot.H.Y * l.Y, l.X, l.Y));
 
 				foreach (Hógolyó hógolyó in Hógolyó.lista)
-					Körrajz(e, 1, hógolyó.h.X, hógolyó.h.Y, hógolyó.v);
+				{
+					Körrajz(e, 1, hógolyó.h.X, hógolyó.h.Y, l);
+				}
 			}
 
 			public void AlakRajz(int alakid, PaintEventArgs e, int x, int y, Vektor méret)

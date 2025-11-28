@@ -25,7 +25,7 @@ namespace Karesz
         {
             foreach (Hógolyó hógolyó in Hógolyó.lista)
             {
-                hógolyó.helyigény = hógolyó.h + hógolyó.v;
+                hógolyó.h = hógolyó.h + hógolyó.v;
             }
         }
 

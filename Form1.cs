@@ -22,7 +22,6 @@ namespace Karesz
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
 				// IDE ÍRD AZ UTASÍTÁSOKAT!
-
 				Fordulj(jobbra);
 				while (true) {
 					Lépj();

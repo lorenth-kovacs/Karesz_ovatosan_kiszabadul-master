@@ -33,21 +33,31 @@ namespace Karesz
             bool irány = (r.Next(1) == 0) ? true : false;
             while (true)
             {
-                gonesz.Lőjj();
                 if (irány)//balra KARESZ szempontjából
                 {
-                    gonesz.Fordulj(jobbra);
-                    
-                    gonesz.Fordulj(balra);
+                    //akadálytávolság; forgatott
+                    //tesó miről yappel???
+                    if (!(gonesz.SzélesUltrahangSzenzor().Item3 <= 1))
+                    {
+                        gonesz.Lőjj();
+                        gonesz.Fordulj(jobbra);
+                        gonesz.Lépj();
+                        gonesz.Fordulj(balra);
+                    }
+                    else
+                        irány = !irány;
                 }
                 else
                 {
-                    gonesz.Fordulj(balra);
-                    if (!Van_e_előttem_fal())
+                    if (!(gonesz.SzélesUltrahangSzenzor().Item1 <= 1))
+                    {
+                        gonesz.Lőjj();
+                        gonesz.Fordulj(balra);
                         gonesz.Lépj();
+                        gonesz.Fordulj(jobbra);
+                    }
                     else
                         irány = !irány;
-                    gonesz.Fordulj(jobbra);
                 }
             }
 		}

@@ -21,12 +21,10 @@ namespace Karesz
 		{
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
-				// IDE ÍRD AZ UTASÍTÁSOKAT!
-
-				while (true)
-				{
-					Lőjj();
-				}
+				//Gonesz megtámadta KARESZT. Segíts KARESZNAK legyőzni goneszt, akinek három élete van.
+				
+				Lőjj();
+				Lépj();
 
 
 			};

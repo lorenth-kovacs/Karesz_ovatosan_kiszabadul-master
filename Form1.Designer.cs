@@ -229,7 +229,7 @@ namespace Karesz
 			this.hótextbox.Name = "hótextbox";
 			this.hótextbox.Size = new System.Drawing.Size(64, 22);
 			this.hótextbox.TabIndex = 26;
-			this.hótextbox.Text = "5";
+			this.hótextbox.Text = "99";
 			this.hótextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// sárgatextbox
@@ -238,7 +238,7 @@ namespace Karesz
 			this.sárgatextbox.Name = "sárgatextbox";
 			this.sárgatextbox.Size = new System.Drawing.Size(64, 22);
 			this.sárgatextbox.TabIndex = 25;
-			this.sárgatextbox.Text = "13";
+			this.sárgatextbox.Text = "0";
 			this.sárgatextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// hólabel
@@ -269,7 +269,7 @@ namespace Karesz
 			this.zöldtextbox.Name = "zöldtextbox";
 			this.zöldtextbox.Size = new System.Drawing.Size(64, 22);
 			this.zöldtextbox.TabIndex = 21;
-			this.zöldtextbox.Text = "17";
+			this.zöldtextbox.Text = "0";
 			this.zöldtextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// pirostextbox
@@ -278,7 +278,7 @@ namespace Karesz
 			this.pirostextbox.Name = "pirostextbox";
 			this.pirostextbox.Size = new System.Drawing.Size(64, 22);
 			this.pirostextbox.TabIndex = 20;
-			this.pirostextbox.Text = "10";
+			this.pirostextbox.Text = "0";
 			this.pirostextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// feketetextbox
@@ -287,7 +287,7 @@ namespace Karesz
 			this.feketetextbox.Name = "feketetextbox";
 			this.feketetextbox.Size = new System.Drawing.Size(64, 22);
 			this.feketetextbox.TabIndex = 19;
-			this.feketetextbox.Text = "20";
+			this.feketetextbox.Text = "0";
 			this.feketetextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// zöldlabel

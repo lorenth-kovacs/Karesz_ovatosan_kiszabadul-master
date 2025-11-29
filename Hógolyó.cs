@@ -37,22 +37,13 @@ namespace Karesz
                 {
                     bool kész = false;
                     int mivanitt = Robot.pálya.MiVanItt(lista[i].helyigény);
+                    // ha falba megy:
                     if (mivanitt == 1)
                     {
                         lista.RemoveAt(i);
                         continue;
                     }
-                    for(int j = 0; j < Robot.lista.Count; j++)
-                    {
-                        if (Robot.lista[j].getHelyigény == lista[i].helyigény)
-                        {
-                            lista.RemoveAt(i);
-                            Robot.halállista.Add(Robot.lista[j]);
-                            kész = true;
-                            break;
-                        }
-                    }
-                    if (kész) continue;
+                    // Összeütköző hógolyók:
                     for (int j = i + 1; j < lista.Count; j++)
                     {
                         if ((lista[i].helyigény == lista[j].helyigény) || (lista[i].helyigény == lista[j].h && lista[i].h == lista[j].helyigény))

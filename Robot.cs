@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace Karesz
 {
@@ -17,7 +18,6 @@ namespace Karesz
 		{
 			#region statikus tulajdonságok
 			static readonly int várakozási_idő = 100;
-			static int gonesz_eletei = 3;
 			public static Form1 form;
 			public static Pálya pálya { get => Robot.form.pálya; }
 			public static List<Robot> lista = new List<Robot>();
@@ -55,6 +55,8 @@ namespace Karesz
 			#endregion
 			#region Instanciák tulajdonságai
 			public string Név { get; private set; }
+			public int Életei { get => életei; }
+			int életei;
 			Bitmap[] képkészlet;
 			public Vektor h;
 			public Vektor H { get => h; }
@@ -92,7 +94,7 @@ namespace Karesz
 			/// <param name="kődb">induláskor a zsebeiben lévő kövek száma</param>
 			/// <param name="szülőform">az eredeti form, a visszahivatkozáshoz kell</param>
 			/// <param name="pálya">a pálya, amin a robot mozog</param>
-			public Robot(string név, Bitmap[] képkészlet, int[] kődb, Vektor h, Vektor v )
+			public Robot(string név, Bitmap[] képkészlet, int[] kődb, Vektor h, Vektor v, int életei )
 			{
 				this.Név = név;
 				this.h = h;
@@ -100,6 +102,7 @@ namespace Karesz
 				this.képkészlet = képkészlet;
 				this.kődb = kődb;
 				this.helyigény = h;
+				this.életei = életei;
 
 				if (0 == Robot.lista.Count)
 					Robot.megfigyeltindex = new ModuloSzam(0,1);
@@ -108,7 +111,16 @@ namespace Karesz
 
 				Robot.lista.Add(this);
 			}
-			public Robot(string adottnév, int[] indulókövek, Vektor hely, Vektor sebesség)
+			public Robot(string név, Bitmap[] képkészlet, int[] kődb, Vektor h, Vektor v)
+				: this(név,
+					  képkészlet,
+					  kődb,
+					  h,
+					  v,
+					  1)
+			{ }
+
+            public Robot(string adottnév, int[] indulókövek, Vektor hely, Vektor sebesség)
 				: this(adottnév, képkészlet_karesz,
 						indulókövek,
 						hely,
@@ -117,6 +129,9 @@ namespace Karesz
 			{ }
 			public Robot(string adottnév, int[] indulókövek, int x, int y, int f) :
 				this(adottnév, indulókövek, new Vektor(x, y), new Vektor(f))
+			{ }
+			public Robot(string adottnév, Bitmap[] képkészlet, int fekete_db, int piros_db, int zöld_db, int sárga_db, int hó_db, int x, int y, int f, int életei) :
+							this(adottnév, képkészlet, new int[] { fekete_db, piros_db, zöld_db, sárga_db, hó_db }, new Vektor(x, y), new Vektor(f), életei)
 			{ }
 			public Robot(string adottnév, Bitmap[] képkészlet, int fekete_db, int piros_db, int zöld_db, int sárga_db, int hó_db, int x, int y, int f) :
 							this(adottnév, képkészlet, new int[] { fekete_db, piros_db, zöld_db, sárga_db, hó_db }, new Vektor(x, y), new Vektor(f))
@@ -149,8 +164,8 @@ namespace Karesz
 				{
 					if (Robot.lista.TrueForAll(r => r.Kész || r.Vár))
 					{
-						Robot.ok_léptetése();
 						Hógolyó.k_léptetése();
+						Robot.ok_léptetése();
 						Robot.form.Frissít();
 						Robot.ok_elindítása();
 					}
@@ -206,79 +221,64 @@ namespace Karesz
 
 			static void holtak_összegyűjtése()
 			{
-                Robot.Halállistához(r =>
-                {
-                    bool falElotte = pálya.MiVanItt(r.helyigény) == fal;
-                    if (!falElotte)
-                        return false;
-                    if (r.Név == "Gonesz")
-                    {
-                        if (gonesz_eletei == 1)
-                            return true;
-                        gonesz_eletei--;
-                        return false;
-                    }
-                    return true;
-                });// falba lép
-                Robot.Halállistához(r =>
-                {
-                    if (pálya.BenneVan(r.helyigény))
-                        return false;
-                    if (r.Név == "Gonesz")
-                    {
-                        if (gonesz_eletei == 1)
-                            return true;
-                        gonesz_eletei--;
-                        return false;
-                    }
-                    return true;
-                }); // kiesik a pályáról
-                Robot.Halállistához((r1, r2) =>
-                {
-                    if (r1.helyigény != r2.helyigény)
-                        return false;
-                    if (r1.Név != "Gonesz" && r2.Név != "Gonesz")
-                        return true;
-                    if (gonesz_eletei == 1)
-                        return true;
-                    gonesz_eletei--; // élet levonása
-                    return false;
-                }); // egy helyre léptek
-                Robot.Halállistához((r1, r2) =>
-                {
-                    bool csere =
-                        r1.helyigény == r2.H &&
-                        r2.helyigény == r1.H;
-
-                    if (!csere)
-                        return false;
-                    if (r1.Név != "Gonesz" && r2.Név != "Gonesz")
-                        return true;
-                    if (gonesz_eletei == 1)
-                        return true;
-                    gonesz_eletei--;
-                    return false;
-                });// átmentek egymáson / megpróbáltak helyet cserélni
+                Robot.Halállistához(r => pálya.MiVanItt(r.helyigény) == fal);// falba lép
+                Robot.Halállistához(r => !pálya.BenneVan(r.helyigény)); // kiesik a pályáról
+                Robot.Halállistához(r => r.Van_e_itt_hógolyó()); // Kiüti egy hógolyó
+                Robot.Halállistához((r1, r2) => r1.helyigény == r2.helyigény); // egy helyre léptek
+                Robot.Halállistához((r1, r2) => r1.helyigény == r2.H && r2.helyigény == r1.H);// átmentek egymáson / megpróbáltak helyet cserélni
             }
             void Sírkő_letétele()
 			{
 				pálya.LegyenItt(H, fekete);
 			}
+			public void Lelőve()
+			{
+				életei--;
+				if(életei == 0)
+					Robot.halállista.Add(this);
+			}
+			bool Van_e_itt_hógolyó()
+			{
+                for (int i = 0; i < Hógolyó.lista.Count; i++)
+                {
+                    if (this.helyigény == Hógolyó.lista[i].helyigény)
+                    {
+                        Hógolyó.lista.RemoveAt(i);
+						return true;
+                    }
+                }
+				return false;
+            }
 			static void Halállistához(Func<Robot, bool> predikátum)
 			{
 				foreach (Robot robot in Robot.lista)
+				{
 					if (predikátum(robot))
+					{
+						robot.életei--;
+						robot.Mondd(robot.életei + " életem maradt");
+					}
+					if(robot.életei == 0)
 						Robot.halállista.Add(robot);
+				}
 			}
 			static void Halállistához(Func<Robot, Robot, bool> predikátum)
 			{
 				for (int i = 0; i < Robot.lista.Count; i++)
 					for (int j = i+1; j < Robot.lista.Count; j++)
+					{
 						if (predikátum(Robot.lista[i], Robot.lista[j]))
 						{
-							Robot.halállista.Add(Robot.lista[i]);
-							Robot.halállista.Add(Robot.lista[j]);
+							Robot.lista[i].életei--;
+							Robot.lista[j].életei--;
+							Robot.lista[i].Mondd(Robot.lista[i].életei + " életem maradt");
+							Robot.lista[j].Mondd(Robot.lista[j].életei + " életem maradt");
 						}
+						if (Robot.lista[i].életei == 0)
+							Robot.halállista.Add(Robot.lista[i]);
+						if (Robot.lista[j].életei == 0)
+							Robot.halállista.Add(Robot.lista[j]);
+					}
 			}
 			void Start_or_Resume()
 			{
@@ -355,10 +355,10 @@ namespace Karesz
 				if (0 < kődb[hó - 2])
 				{
 					--kődb[hó - 2];
-					Robot.Ellövendő_lövedékek.Add((this.H, this.v));
+					Robot.Ellövendő_lövedékek.Add((this.H + this.v, this.v));
 				}
 				else
-					Mondd("Nincsen nálam hó!");
+					Mondd(": Nincsen nálam hó!");
 
 				Cselekvés_vége();
 			}

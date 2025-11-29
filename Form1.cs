@@ -21,10 +21,10 @@ namespace Karesz
 		{
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
-				//Gonesz megtámadta KARESZT. Segíts KARESZNAK legyőzni goneszt, akinek három élete van.
-				while (true)
-				Lőjj();
+				// Gonesz le akarja rombolni a játékgépet. A játékgép széléből le is tört egy darabkát. Segíts KARESZNAK betömni ezt a lyukat egy piros kaviccsal. Vigyázz, mert Gonesz ezt nem szeretné, és hógolyókkal bombázza KARESZT. Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van. Gonesznak három élete van.
 
+				Lépj();
+				Lőjj();
 
 			};
 		}
@@ -37,6 +37,11 @@ namespace Karesz
 
 
 /* USERS MANUAL -- LEGFONTOSABB PARANCSOK
+
+PÁLYASPECIFIKUS
+Lőjj();							-------- Karesz lő előre egy hógolyót
+Milyen_messze_van_hógolyó()		-------- Visszaadja a Karesszal szemben levő legközelebbi hógolyó távolságát, vagy -1-et
+Erre_jön_e_a_hógolyó()			-------- igaz, ha Karesz felé közeledik a Karesszal szembe levő hógolyó
 
 MOZGÁSOK
 

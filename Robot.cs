@@ -18,9 +18,9 @@ namespace Karesz
 			#region statikus tulajdonságok
 			static readonly int várakozási_idő = 100;
 			public static Form1 form;
-			static Pálya pálya { get => Robot.form.pálya; }
+			public static Pálya pálya { get => Robot.form.pálya; }
 			public static List<Robot> lista = new List<Robot>();
-			static HashSet<Robot> halállista = new HashSet<Robot>();
+			public static HashSet<Robot> halállista = new HashSet<Robot>();
 			public static int ok_száma { get => Robot.lista.Count; }
 			public static ModuloSzam megfigyeltindex;
 			public static Robot akit_kiválasztottak { get => lista[megfigyeltindex.ToInt()]; }
@@ -57,6 +57,7 @@ namespace Karesz
 			Bitmap[] képkészlet;
 			public Vektor h;
 			public Vektor H { get => h; }
+			public Vektor getHelyigény { get => helyigény; }
 			Vektor helyigény;
 			Vektor v;
 			int[] kődb;
@@ -147,8 +148,8 @@ namespace Karesz
 				{
 					if (Robot.lista.TrueForAll(r => r.Kész || r.Vár))
 					{
-						Hógolyó.k_léptetése();
 						Robot.ok_léptetése();
+						Hógolyó.k_léptetése();
 						Robot.form.Frissít();
 						Robot.ok_elindítása();
 					}

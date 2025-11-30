@@ -35,7 +35,6 @@ namespace Karesz
                 // Ütköző hógolyók:
                 for (int i = lista.Count - 1; i >= 0; i--)
                 {
-                    bool kész = false;
                     int mivanitt = Robot.pálya.MiVanItt(lista[i].helyigény);
                     // ha falba megy:
                     if (mivanitt == 1)

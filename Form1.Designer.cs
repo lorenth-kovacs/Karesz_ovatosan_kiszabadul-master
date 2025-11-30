@@ -229,7 +229,7 @@ namespace Karesz
 			this.hótextbox.Name = "hótextbox";
 			this.hótextbox.Size = new System.Drawing.Size(64, 22);
 			this.hótextbox.TabIndex = 26;
-			this.hótextbox.Text = "99";
+			this.hótextbox.Text = "10";
 			this.hótextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// sárgatextbox

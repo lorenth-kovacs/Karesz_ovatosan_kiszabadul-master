@@ -16,8 +16,45 @@ namespace Karesz
 
 		// IDE JÖNNEK AZ ELJÁRÁSOK ÉS FÜGGVÉNYEK
 
+		bool A_falnál_vagyok_e()
+		{
+			Fordulj(balra);
+			bool result = Van_e_előttem_fal();
+			Fordulj(jobbra);
+			return result;
+		}
 
-		void DIÁK_ROBOTJAI()
+		void Juss_el_a_falig()
+		{
+            while (!Erre_jön_e_a_hógolyó())
+                Várj();
+            Fordulj(balra);
+            Lépj();
+            Fordulj(jobbra);
+            if (Erre_jön_e_a_hógolyó())
+            {
+                while (Milyen_messze_van_hógolyó() > 2)
+                    Várj();
+                Lőjj();
+                Várj();
+            }
+            Fordulj(balra);
+            while (!Van_e_előttem_fal())
+                Lépj();
+            Fordulj(jobbra);
+        }
+
+		void Menj_a_lyukig()
+		{
+			for(int i = 0; i < 14; i++)
+			{
+				if (Erre_jön_e_a_hógolyó())
+					Lőjj();
+				Lépj();
+			}
+		}
+
+        void DIÁK_ROBOTJAI()
 		{
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
@@ -31,22 +68,14 @@ namespace Karesz
 				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
 				// tehát nem kell feltétlenül gyilkolni, a cél, hogy KARESZ betömje a lyukat egy piros kaviccsal (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
 
-				while (!Erre_jön_e_a_hógolyó()) 
-					Várj();
+				if (!A_falnál_vagyok_e())
+					Juss_el_a_falig();
+				Menj_a_lyukig();
 				Fordulj(balra);
-				Lépj();
-				Fordulj(jobbra);
 				if (Erre_jön_e_a_hógolyó())
-				{
-					while (Milyen_messze_van_hógolyó() > 2)
-						Várj();
 					Lőjj();
-					Várj();
-				}
-				Fordulj(balra);
-				while (!Van_e_előttem_fal())
-					Lépj();
-				Fordulj(jobbra);
+				Lépj();
+				Tegyél_le_egy_kavicsot(piros);
 			};
 		}
 

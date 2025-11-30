@@ -316,8 +316,8 @@ namespace Karesz
 					--kődb[szín - 2];
 					idő++;
 				}
-				if (szín == piros && pálya.MiVanItt(H) == piros)
-					vége = true;
+                if (szín == piros && pálya.MiVanItt(new Vektor(12, 8)) == piros)
+                    vége = true;
 				Cselekvés_vége();
 			}
 			/// <summary>

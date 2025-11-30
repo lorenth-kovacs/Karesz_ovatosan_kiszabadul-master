@@ -19,6 +19,7 @@ namespace Karesz
 			#region statikus tulajdonságok
 			static readonly int várakozási_idő = 100;
 			public static Form1 form;
+			static bool vége = false;
 			public static Pálya pálya { get => Robot.form.pálya; }
 			public static List<Robot> lista = new List<Robot>();
 			public static HashSet<Robot> halállista = new HashSet<Robot>();
@@ -160,7 +161,7 @@ namespace Karesz
 			{
 				Robot.ok_elindítása();
 				Thread.Sleep(várakozási_idő);
-				while (Robot.lista.Exists(r => !r.Kész))
+				while (Robot.lista.Exists(r => !r.Kész) && !Robot.vége)
 				{
 					if (Robot.lista.TrueForAll(r => r.Kész || r.Vár))
 					{
@@ -315,6 +316,8 @@ namespace Karesz
 					--kődb[szín - 2];
 					idő++;
 				}
+				if (szín == piros && pálya.MiVanItt(H) == piros)
+					vége = true;
 				Cselekvés_vége();
 			}
 			/// <summary>

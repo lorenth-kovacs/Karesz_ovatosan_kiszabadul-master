@@ -30,7 +30,7 @@ namespace Karesz
 				// Gonesznak három élete van.
 				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
 				// (Karesz távolsága a rongálástól: 14)
-				// tehát nem kell feltétlenül gyilkolni, a cél, hogy KARESZ betömje a lyukat egy piros kaviccsal (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
+				// tehát nem kell feltétlenül gyilkolni, a cél az, hogy ** KARESZ betömje a lyukat egy piros kaviccsal ** (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
 
 				Lépj();
 				Lőjj();
@@ -52,9 +52,15 @@ namespace Karesz
 /* USERS MANUAL -- LEGFONTOSABB PARANCSOK
 
 PÁLYASPECIFIKUS
+
 Lőjj();							-------- Karesz lő előre egy hógolyót
+
 Milyen_messze_van_hógolyó()		-------- Visszaadja a Karesszal szemben levő legközelebbi hógolyó távolságát, vagy -1-et
 Erre_jön_e_a_hógolyó()			-------- igaz, ha Karesz felé közeledik a Karesszal szembe levő legközelebbi hógolyó
+
+HASZNOS
+
+Várj();							-------- Karesz kihagyja magát egy körből, amíg a többiek lépnek
 
 MOZGÁSOK
 

@@ -29,7 +29,7 @@ namespace Karesz
 				// Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van.
 				// Gonesznak három élete van.
 				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
-				// tehát nem kell feltétlenül gyilkolni, a cél, hogy betömjük a lyukat egy piros kaviccsal (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
+				// tehát nem kell feltétlenül gyilkolni, a cél, hogy Karesz betömje a lyukat egy piros kaviccsal (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
 
 				Lépj();
 				Lőjj();
@@ -37,16 +37,6 @@ namespace Karesz
 				int a = Milyen_messze_van_hógolyó();
 				bool b = Erre_jön_e_a_hógolyó();
 
-				for (int i = 0; i < 9; i++)
-				{
-					Lőjj();
-				}
-				Fordulj(jobbra);
-				Tegyél_le_egy_kavicsot(piros);
-				while (true)
-				{
-					Lépj();
-				}
 
 			};
 		}

@@ -33,10 +33,11 @@ namespace Karesz
             Fordulj(jobbra);
             if (Erre_jön_e_a_hógolyó())
             {
-                while (Milyen_messze_van_hógolyó() > 2)
+                while (Milyen_messze_van_hógolyó() > 3)
                     Várj();
                 Lőjj();
                 Várj();
+                Várj(); // biztonsági okokból
             }
             Fordulj(balra);
             while (!Van_e_előttem_fal())

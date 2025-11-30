@@ -1,7 +1,9 @@
-Karesz egy süket és vak Μῑνώταυρος mellett találja magát, aki el-elmélázva, meg-megállva fel-alá járkál egy folyosón. Ha Karesz neki megy, halál fia. 
-Vajon kijut-e a Karesz a λαβύρινθος-ból?
-
-Vidd ki Kareszt a pálya szélére. Ha tudod.
-
----------------------------------------------------------------------------------
+Gonesz le akarja rombolni a játékgépet.<br>
+A játékgép széléből le is tört egy darabkát.<br>
+  ---- **Segíts KARESZNAK betömni ezt a lyukat egy piros kaviccsal!** ----<br>
+Vigyázz, mert Gonesz ezt nem szeretné, és hógolyókkal bombázza KARESZT.<br>
+Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van.<br>
+Gonesznak három élete van.<br>
+tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.<br>
+---------------------------------------------------------------------------------<br>
 Középiskolai Algoritmusokra Rávezető Edukációs Szoftver (továbbiakban K.A.R.E.SZ.)

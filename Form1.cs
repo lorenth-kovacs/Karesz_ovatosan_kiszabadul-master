@@ -88,4 +88,4 @@ Hőmérséklet();              -------- a Karesz által mért hőmérséklet. A 
 A szenzorokat bármennyiszer használhatja a robot a saját körén belül.
 */
 
-//A pályát készíték: 
+//A pályát készíték: Kovács Ádám, Zenzerov Maxim, Vilmos45 /24F
